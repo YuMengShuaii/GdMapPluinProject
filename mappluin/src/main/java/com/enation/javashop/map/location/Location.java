@@ -54,7 +54,7 @@ public class Location {
      * @param lis      获取位置信息监听事件
      * @param isOnce 为true时调用一次，false时每隔两秒定位一次
      */
-    public void getLocationDetail(Activity context, final Listener.DataLisener<AMapLocation> lis, boolean isOnce){
+    public void getLocationDetail(Activity context, boolean isOnce, final Listener.DataLisener<AMapLocation> lis){
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setTitle("正在获取位置信息！");
         dialog.setCanceledOnTouchOutside(false);

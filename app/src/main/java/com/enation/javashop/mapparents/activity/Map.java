@@ -94,7 +94,7 @@ public class Map extends AppCompatActivity {
         //当距离大于500米时使用公交路线，小于500米时使用步行路线，驾车永远是备选
         if (distance > 500) {
             //获取公交信息方法
-            getPathUtils.getPathData(Application.latlon, MapType.BUS, new Listener.DataLisener<PathModel>() {
+            getPathUtils.getPathData(Application.latlon, MapType.BUS,true, new Listener.DataLisener<PathModel>() {
                 @Override
                 public void success(PathModel cloudResult) {
                     if (cloudResult != null && cloudResult.getPaths() != null && cloudResult.getPaths().size() > 0) {
@@ -115,7 +115,7 @@ public class Map extends AppCompatActivity {
                 public void faild(String errorMessage) {
 
                 }
-            },true);
+            });
 
             bus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -137,7 +137,7 @@ public class Map extends AppCompatActivity {
             });
         } else {
             //获取步行信息
-            getPathUtils.getPathData(Application.latlon, MapType.WALK, new Listener.DataLisener<PathModel>() {
+            getPathUtils.getPathData(Application.latlon, MapType.WALK,true,new Listener.DataLisener<PathModel>() {
                 @Override
                 public void success(PathModel walkModel) {
                     //设置步行的bar布局
@@ -165,7 +165,7 @@ public class Map extends AppCompatActivity {
                 public void faild(String errorMessage) {
 
                 }
-            },true);
+            });
 
             bus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -235,11 +235,11 @@ public class Map extends AppCompatActivity {
         }
         dialog.show();
         //获取自驾信息
-        getPathUtils.getPathData(Application.latlon, MapType.DRIVE, new Listener.DataLisener<PathModel>() {
+        getPathUtils.getPathData(Application.latlon, MapType.DRIVE,true,new Listener.DataLisener<PathModel>() {
             @Override
             public void success(final PathModel drivermodel) {
                 //获取步行信息
-                getPathUtils.getPathData(Application.latlon, MapType.WALK, new Listener.DataLisener<PathModel>() {
+                getPathUtils.getPathData(Application.latlon, MapType.WALK,true,new Listener.DataLisener<PathModel>() {
                     @Override
                     public void success(PathModel walkModel) {
                         dialog.dismiss();
@@ -256,7 +256,7 @@ public class Map extends AppCompatActivity {
                     public void faild(String errorMessage) {
 
                     }
-                },true);
+                });
             }
 
             @Override
@@ -264,7 +264,7 @@ public class Map extends AppCompatActivity {
 
             }
 
-        },true);
+        });
     }
 
     private void walkLisener(@MapType.MT final int mapType) {
@@ -273,11 +273,11 @@ public class Map extends AppCompatActivity {
         }
         dialog.show();
         //获取自驾信息
-        getPathUtils.getPathData(Application.latlon, MapType.DRIVE, new Listener.DataLisener<PathModel>() {
+        getPathUtils.getPathData(Application.latlon, MapType.DRIVE,true,new Listener.DataLisener<PathModel>() {
             @Override
             public void success(final PathModel drivermodel) {
                 //获取公交信息
-                getPathUtils.getPathData(Application.latlon, MapType.BUS, new Listener.DataLisener<PathModel>() {
+                getPathUtils.getPathData(Application.latlon, MapType.BUS,true,new Listener.DataLisener<PathModel>() {
                     @Override
                     public void success(PathModel busModel1) {
                         dialog.dismiss();
@@ -294,13 +294,13 @@ public class Map extends AppCompatActivity {
                     public void faild(String errorMessage) {
 
                     }
-                },true);
+                });
             }
 
             @Override
             public void faild(String errorMessage) {
 
             }
-        },true);
+        });
     }
 }

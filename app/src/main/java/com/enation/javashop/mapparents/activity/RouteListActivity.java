@@ -123,17 +123,17 @@ public class RouteListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.show();
                 //获取公交数据
-                getPathUtils.getPathData(Application.latlon, MapType.BUS, new Listener.DataLisener<PathModel>() {
+                getPathUtils.getPathData(Application.latlon, MapType.BUS,flag, new Listener.DataLisener<PathModel>() {
                     @Override
                     public void success(PathModel busModel1) {
                         busModel = busModel1;
                         //获取自驾数据
-                        getPathUtils.getPathData(Application.latlon, MapType.DRIVE, new Listener.DataLisener<PathModel>() {
+                        getPathUtils.getPathData(Application.latlon, MapType.DRIVE,flag, new Listener.DataLisener<PathModel>() {
                             @Override
                             public void success(PathModel drivermodel) {
                                 carModel = drivermodel;
                                 //获取步行数据
-                                getPathUtils.getPathData(Application.latlon, MapType.WALK, new Listener.DataLisener<PathModel>() {
+                                getPathUtils.getPathData(Application.latlon, MapType.WALK,flag, new Listener.DataLisener<PathModel>() {
                                     @Override
                                     public void success(PathModel walkModel1) {
                                         walkModel = walkModel1;
@@ -162,21 +162,21 @@ public class RouteListActivity extends AppCompatActivity {
 
                                     }
 
-                                }, flag);
+                                });
                             }
 
                             @Override
                             public void faild(String errorMessage) {
 
                             }
-                        },flag);
+                        });
                     }
 
                     @Override
                     public void faild(String errorMessage) {
 
                     }
-                }, flag);
+                });
             }
         });
     }

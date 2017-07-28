@@ -43,10 +43,6 @@ import static android.content.Context.SENSOR_SERVICE;
 
 public class MapUtils implements LocationSource {
     /**
-     * 路线搜索对象
-     */
-    private RouteSearch routeSearch;
-    /**
      * 地图配置对象
      */
     private AMap aMap;
@@ -173,7 +169,7 @@ public class MapUtils implements LocationSource {
         //注册陀螺仪回调接口
         mSM.registerListener(sensorEventListener, mSensor, SensorManager.SENSOR_DELAY_UI);//注册回调函数
         //连续不间断获取自身定位 间隔2秒
-        Location.getLocation().getLocationDetail(context, new Listener.DataLisener<AMapLocation>() {
+        Location.getLocation().getLocationDetail(context,false, new Listener.DataLisener<AMapLocation>() {
             @Override
             public void success(final AMapLocation aMapLocation) {
                 if (mListener != null && aMapLocation != null) {
@@ -183,11 +179,9 @@ public class MapUtils implements LocationSource {
 
             @Override
             public void faild(String error) {
-                Toast.makeText(context,"网络原因，定位失败！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"定位失败！",Toast.LENGTH_SHORT).show();
             }
-        },false);
-        //初始化检索对象
-        routeSearch = new RouteSearch(context);
+        });
         //设置Marker
         setMarker(end,isVisableEnd);
     }
@@ -253,7 +247,6 @@ public class MapUtils implements LocationSource {
         mSM.unregisterListener(sensorEventListener, mSensor);
         aMap=null;
         mSensor=null;
-        routeSearch=null;
         mListener=null;
         sensorEventListener=null;
         end=null;
@@ -305,7 +298,7 @@ public class MapUtils implements LocationSource {
 
     /**
      * 设置路径轨迹中的Marker
-     * @param list
+     * @param list  轨迹集合
      */
     private void setMarker(ArrayList<PathModel.Path.BusStep.Info> list){
         for (PathModel.Path.BusStep.Info info : list) {

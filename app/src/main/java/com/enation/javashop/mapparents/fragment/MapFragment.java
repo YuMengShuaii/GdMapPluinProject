@@ -92,7 +92,7 @@ public class MapFragment extends Fragment {
      * @param isSingle true执行单次定位 false 多次不间断定位
      */
     private void TestLocation(boolean isSingle){
-        location.getLocationDetail(getActivity(), new Listener.DataLisener<AMapLocation>() {
+        location.getLocationDetail(getActivity(),isSingle, new Listener.DataLisener<AMapLocation>() {
             @Override
             public void success(AMapLocation aMapLocation) {
                 Application.mylocation = aMapLocation;
@@ -104,6 +104,6 @@ public class MapFragment extends Fragment {
             public void faild(String error) {
                 Toast.makeText(getActivity(),error, Toast.LENGTH_SHORT).show();
             }
-        },isSingle);
+        });
     }
 }

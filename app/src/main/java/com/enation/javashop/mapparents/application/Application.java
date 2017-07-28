@@ -31,7 +31,9 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         map = new HashMap<>();
+        /**初始化云图表ID*/
         CloudMap.initCloudMap(TABLEID);
+        /**初始化云图查询时分页大小*/
         CloudMap.initCloudQueryPageSize(10);
     }
 

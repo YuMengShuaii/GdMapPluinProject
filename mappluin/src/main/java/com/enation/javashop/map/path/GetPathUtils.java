@@ -75,7 +75,7 @@ public class GetPathUtils {
      * @param getPath  监听事件
      */
     public void  getPathDataShop(LatLng end, int type, Listener.DataLisener<PathModel> getPath){
-        getPathData(end, type ,getPath ,true);
+        getPathData(end, type ,true,getPath);
     }
 
     /**
@@ -85,7 +85,7 @@ public class GetPathUtils {
      * @param getPath  监听事件
      */
     public void  getPathDataHome(LatLng end, int type, Listener.DataLisener<PathModel> getPath){
-        getPathData(end, type,getPath,false);
+        getPathData(end, type,false,getPath);
     }
     /**
      * 获取路线信息
@@ -94,7 +94,7 @@ public class GetPathUtils {
      * @param getPath 监听事件
      * @param end     目的地坐标
      */
-    public void getPathData(LatLng end, @MapType.MT int type, final Listener.DataLisener<PathModel> getPath, boolean isToShop){
+    public void getPathData(LatLng end, @MapType.MT int type,boolean isToShop, final Listener.DataLisener<PathModel> getPath){
         //注册监听函数
         initListener(getPath,type);
         //声明起始坐标
