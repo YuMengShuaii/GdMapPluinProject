@@ -11,15 +11,15 @@
 		<dependency>
 		<groupId>com.enation.geamtear.map</groupId>
 		<artifactId>gdmap-utils</artifactId>
-		<version>1.0.3</version>
+		<version>1.0.4</version>
 		<type>pom</type>
 		</dependency> 
 		
 ###  Gradle 
 
-		compile 'com.enation.geamtear.map:gdmap-utils:1.0.3'
+		compile 'com.enation.geamtear.map:gdmap-utils:1.0.4'
 ### LVY
-		<dependency org='com.enation.geamtear.map' name='gdmap-utils' rev='1.0.3'>
+		<dependency org='com.enation.geamtear.map' name='gdmap-utils' rev='1.0.4'>
   		<artifact name='gdmap-utils' ext='pom' ></artifact>
 		</dependency>
 		
